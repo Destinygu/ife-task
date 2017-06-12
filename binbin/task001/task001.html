@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IFE JavaScript Task 01</title>
+</head>
+<body>
+    <label for="aqi-input">请输入北京今天天气质量</label>
+    <input type="text" id="aqi-input">
+    <button id="button">确认填写</button>
+    <div>你输入的值时：<span id="aqi-display">尚无录入</span></div>
+<script src="../util.js"></script>
+<script>
+    (function(){
+        var oBn = $("button"),
+            oIn = $("aqi-input"),
+            oSp = $("aqi-display");
+
+        EventUtil.addHandler(oBn,'click',function(){
+            oSp.innerText = oIn.value;
+        });
+    })();
+</script>
+</body>
+</html>
