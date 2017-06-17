@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #queue{
+           margin-top: 30px;
+        }
+        #queue span{
+            font-size:20px;
+            color:#fff;
+            background: #298EFF;
+            padding: 5px 10px;
+            margin: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<!--
+任务描述
+如图，模拟一个队列，队列的每个元素是一个数字，初始队列为空
+有一个input输入框，以及4个操作按钮
+
+点击"左侧入"，将input中输入的数字从左侧插入队列中；
+点击"右侧入"，将input中输入的数字从右侧插入队列中；
+点击"左侧出"，读取并删除队列左侧第一个元素，并弹窗显示元素中数值；
+点击"右侧出"，读取并删除队列又侧第一个元素，并弹窗显示元素中数值；
+
+点击队列中任何一个元素，则该元素会被从队列中删除
+-->
+<input type="text" id="inp">
+<button id="lin">左侧入</button>
+<button id="rin">右侧入</button>
+<button id="lout">左侧出</button>
+<button id="rout">右侧出</button>
+
+<div id="queue"></div>
+
+<script src="../util.js"></script>
+<script>
+    // 验证输入框的值
+    function validateValue(v){
+        if( v == "" ){ return 0; }
+        if(!/^\d+$/.test(v)){ return 0; }
+    }
+
+    //  插入时就赋予自删除事件
+    function delSelf(item){
+        EventUtil.addHandler(item,'click',function(){
+            item.parentNode.removeChild(item);
+        });
+    }
+
+    // 左侧入
+   function leftIn(){
+        var oInp = validateValue($("inp").value),
+            newItem = document.createElement("span");
+        
+        delSelf(newItem);
+        if(oInp === 0){
+            alert("请输入数值");
+        }else{
+            newItem.innerHTML = $("inp").value;             
+            if($("queue").children[0]){
+                $("queue").insertBefore(newItem,$("queue").childNodes[0]); 
+            }else{
+                $("queue").appendChild(newItem);
+            }   
+        }
+        $("inp").value = "";
+    }
+
+    // 右侧入
+    function rightIn(){
+        var oInp = validateValue($("inp").value),
+            newItem = document.createElement("span");
+        
+        delSelf(newItem);
+        if(oInp === 0){
+            alert("请输入数值");
+        }else{
+            newItem.innerHTML = $("inp").value;
+            $("queue").appendChild(newItem);
+        }
+        $("inp").value = "";
+    }
+
+    // 左侧出
+    function leftOut(){
+        if($("queue").children[0]){
+            alert("移除"+$("queue").children[0].innerText);
+            $("queue").removeChild($("queue").children[0]);
+        }else{
+            alert("队列已空");
+        }
+    }
+
+     // 右侧出
+    function rightOut(){
+        var len = $("queue").children.length - 1;
+        if($("queue").children[len]){
+            alert("移除"+$("queue").children[len].innerText);
+            $("queue").removeChild($("queue").children[len]);
+        }else{
+            alert("队列已空");
+        }
+    }
+
+    function init(){
+        EventUtil.addHandler($("lin"),"click",leftIn);
+        EventUtil.addHandler($("rin"),"click",rightIn);
+        EventUtil.addHandler($("lout"),"click",leftOut);
+        EventUtil.addHandler($("rout"),"click",rightOut);
+    }
+
+    init();
+</script>
+</body>
+</html>
