@@ -44,8 +44,13 @@
 <script>
     // 验证输入框的值
     function validateValue(v){
-        if( v == "" ){ return 0; }
-        if(!/^\d+$/.test(v)){ return 0; }
+        if( v == "" ){ 
+            return 0; 
+        }else if(!/^\d+$/.test(v)){
+            return 0;
+        }else{
+            return 1;
+        }
     }
 
     //  插入时就赋予自删除事件
@@ -63,7 +68,8 @@
         delSelf(newItem);
         if(oInp === 0){
             alert("请输入数值");
-        }else{
+        }
+        if(oInp === 1){
             newItem.innerHTML = $("inp").value;             
             if($("queue").children[0]){
                 $("queue").insertBefore(newItem,$("queue").childNodes[0]); 
@@ -82,7 +88,8 @@
         delSelf(newItem);
         if(oInp === 0){
             alert("请输入数值");
-        }else{
+        } 
+        if(oInp === 1){
             newItem.innerHTML = $("inp").value;
             $("queue").appendChild(newItem);
         }
