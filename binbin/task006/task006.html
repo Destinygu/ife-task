@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .left-div{
+            width: 250px;
+            float: left;
+        }
+        .ld-bottom{
+            margin-top: 20px;
+        }
+        .right-div{
+            float: left;
+        }
+        .right-div div{
+            color: #fff;
+            background: #298EFF;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+        }
+        .right-div div span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<!--
+基于任务四进行升级
+将新元素输入框从input改为textarea
+允许一次批量输入多个内容，格式可以为数字、中文、英文等，可以通过用回车，逗号（全角半角均可），顿号，空格（全角半角、Tab等均可）
+等符号作为不同内容的间隔
+增加一个查询文本输入框，和一个查询按钮，当点击查询时，将查询词在各个元素内容中做模糊匹配，
+将匹配到的内容进行特殊标识，如文字颜色等。举例，内容中有abcd，查询词为ab或bc，则该内容需要标识 -->
+<div class="left-div">
+    <div class="ld-top">
+        <textarea  id="tear" cols="30" rows="10"></textarea><br>
+        <button id="create" style="width:233px">插入</button>
+    </div>
+    <div class="ld-bottom">
+        <input id="keyword" type="text">
+        <button id="retrieve">查询</button>
+    </div>
+</div>
+<div class="right-div" id="container"></div>
+
+<script src="../util.js"></script>
+<script>
+(function(){
+// 添加
+function insert(){
+    if($("tear").value == ""){
+        alert("不能为空");
+        return ;
+    }
+    var splitArr = $("tear").value.split(/[,，.。、\s\n]/);
+    for (var i=0; i<splitArr.length; i++) {
+        var content = document.createElement("div");
+        content.innerHTML = splitArr[i];
+        $("container").appendChild(content);
+    }
+}
+// 查询
+function search(){
+    if($("keyword").value == ""){
+        alert("不能为空");
+        return ;
+    }
+    var nodeList = $("container").children;
+    var nodeLen = nodeList.length; 
+    var keyword = new RegExp($("keyword").value,"g");
+
+    for(var i=0; i<nodeLen; i++){
+        nodeList[i].innerHTML = nodeList[i].innerHTML.replace(keyword,"<span style='color:red'>"+$("keyword").value+"</span>");     
+    }
+}
+
+function init(){
+    EventUtil.addHandler($("create"),"click",insert);
+    EventUtil.addHandler($("retrieve"),"click",search);
+}
+
+init();
+})();
+</script>
+</button>
+</body>
+</html>
