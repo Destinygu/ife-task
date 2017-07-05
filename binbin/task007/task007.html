@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            border: 2px solid #000;
+        }
+        #first{
+            margin: 50px auto;
+            width: 800px;
+            background: #fff;
+            display: flex;
+            padding: 20px;
+            justify-content: space-between;
+        }
+        .f-s{
+            width: 340px;
+            background: #fff;
+            padding: 20px;
+            display: flex;  
+            justify-content: space-between;    
+        }
+        .second{
+            width: 120px;
+            padding: 20px;
+            background: #fff;
+            display: flex;  
+            justify-content: space-between; 
+        }
+        .last{
+            width: 40px;
+            height: 40px;
+            background: #fff;
+        }
+        form{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--
+参考示例图，在页面中展现一颗二叉树的结构
+提供一个按钮，显示开始遍历，点击后，以动画的形式呈现遍历的过程
+二叉树的遍历算法和方式自定，前序中序后序皆可，但推荐可以提供多种算法的展示（增加多个按钮，每个按钮对应不同的算法）
+当前被遍历到的节点做一个特殊显示（比如不同的颜色）
+每隔一段时间（500ms，1s等时间自定）再遍历下一个节点  
+-->
+    <div id="first">
+        <div class="f-s">
+            <div class="second">
+                <div class="last"></div>
+                <div class="last"></div>
+            </div>
+            <div class="second">
+                <div class="last"></div>
+                <div class="last"></div>
+            </div>
+        </div>
+        <div class="f-s">
+            <div class="second">
+                <div class="last"></div>
+                <div class="last"></div>
+            </div>
+            <div class="second">
+                <div class="last"></div>
+                <div class="last"></div>
+            </div>
+        </div>
+    </div>
+
+    <form>
+        <input type="button" id="fir" value="前序遍历">
+        <input type="button" id="sec" value="中序遍历">
+        <input type="button" id="las" value="后序遍历">
+    </form>
+<script src="../util.js"></script>
+<script>
+ // 空数组存储遍历所得dom结点
+var nodeList = [];
+var isRun = false;
+
+//前序遍历
+function preOrder(node) {
+  nodeList.push(node);
+  if (node.children[0] != null) 
+    preOrder(node.children[0]);
+  if (node.children[1] != null)
+    preOrder(node.children[1]);
+}
+
+//中序遍历
+function inOrder(node) {
+  if (node.children[0] != null)
+    inOrder(node.children[0]);
+  nodeList.push(node);
+  if (node.children[1] != null)
+    inOrder(node.children[1]);
+}
+
+//后序遍历
+function postOrder(node) {
+  if (node.children[0] != null)
+    postOrder(node.children[0]);
+  if (node.children[1] != null)
+    postOrder(node.children[1]);
+  nodeList.push(node);
+}
+
+function render() {
+  if (isRun) {
+    alert('in animation');
+    return;
+  }
+
+  isRun = true;
+  var i = 0;
+  var flag = false;
+  nodeList[i].style.backgroundColor = 'blue';
+  var showRet = setInterval(function() {
+    i++;
+    if (i >= nodeList.length) {
+      clearInterval(showRet);
+      nodeList[nodeList.length - 1].style.backgroundColor = '#fff';
+      nodeList = [];
+      isRun = false;
+      return;
+    }
+    nodeList[i - 1].style.backgroundColor = '#fff';
+    nodeList[i].style.backgroundColor = 'blue';
+  }, 400);
+  flag = true;
+  if(flag){
+      listNode = [];
+  }
+}
+
+function init(){
+        EventUtil.addHandler($("fir"),"click",function(){
+          preOrder($('first'));
+          render();
+        });
+        EventUtil.addHandler($("sec"),"click",function(){
+          inOrder($('first'));
+          render();
+        });
+        EventUtil.addHandler($("las"),"click",function(){
+          postOrder($('first'));
+          render();
+        });
+    }
+
+init();
+</script>
+<!--<script>
+    上述js代码参照https://github.com/dirkmu404/baudu/blob/master/stage%202/task7/task7.js完成，但修改其中的数组累积的bug
+    二叉树的学习资料如下,主要是采用递归的思想
+    var tree = {
+        value: 1,
+        left: {
+            value: 2,
+            left: {
+                value: 4
+            }
+        },
+        right: {
+            value: 3,
+            left: {
+                value: 5,
+                left: {
+                    value: 7
+                },
+                right: {
+                    value: 8
+                }
+            },
+            right: {
+                value: 6
+            }
+        }
+    }
+    var preOrder = function(node){
+        if(node){
+            console.log(node.value);
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
+
+    var inOrder = function(node){
+        if(node){
+            inOrder(node.left);
+            console.log(node.value);
+            inOrder(node.right);
+        }
+    }
+    var postOrder = function(node){
+        if(node){
+            postOrder(node.left);
+            postOrder(node.right);
+            console.log(node.value);
+        }
+    }
+
+    preOrder(tree);
+    console.log("======");
+    inOrder(tree);
+    console.log("======");
+    postOrder(tree);
+</script>-->
+</body>
+</html>
