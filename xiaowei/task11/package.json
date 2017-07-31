@@ -1,0 +1,23 @@
+{
+    "name": "task11",
+    "version": "1.0.0",
+    "description": "task11",
+    "main": "index.js",
+    "scripts": {
+        "start": "gulp serve"
+    },
+    "keywords": [
+        "task11"
+    ],
+    "author": "destinygu",
+    "license": "ISC",
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-clean": "^0.3.2",
+        "gulp-connect": "^5.0.0",
+        "gulp-load-plugins": "^1.5.0",
+        "gulp-sass": "^3.1.0",
+        "gulp-tinypng": "^1.0.2",
+        "open": "^0.0.5"
+    }
+}

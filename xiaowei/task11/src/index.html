@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/index.css">
+</head>
+
+<body>
+    <header>
+        <div class="head">
+            <span class="back"><返回</span>
+            <h4 class="title">红楼非梦</h4>
+        </div>
+        <nav class="navbar">
+            <a class="nav-link active" href="#">导航</a>
+            <a class="nav-link" href="#">导航</a>
+            <a class="nav-link" href="#">导航</a>
+            <a class="nav-link" href="#">导航</a>
+            <a class="nav-link" href="#">导航</a>
+        </nav>
+    </header>
+    <div class="content">
+        <div class="headslide">
+            <a href="#"><img src="./img/longmao.jpg" alt=""></a>
+        </div>
+        <div class="tab_wrap">
+            <div>
+                <div  class="tab_item">
+                    <a href="#">
+                        <span class="circle"></span>
+                        <span class="tab_dec">文本</span>
+                    </a>
+                </div>
+                <div  class="tab_item">
+                    <a href="#">
+                        <span class="circle"></span>
+                        <span class="tab_dec">文本</span>
+                    </a>
+                </div>
+                <div  class="tab_item">
+                    <a href="#">
+                        <span class="circle"></span>
+                        <span class="tab_dec">文本</span>
+                    </a>
+                </div>
+                <div  class="tab_item">
+                    <a href="#">
+                        <span class="circle"></span>
+                        <span class="tab_dec">文本</span>
+                    </a>
+                </div>
+                <div  class="tab_item">
+                    <a href="#">
+                        <span class="circle"></span>
+                        <span class="tab_dec">文本</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="column_wrap">
+            <a class="column" href="#">
+                <img src="./img/longmao.jpg" alt="">
+                <h4>分栏一</h4>
+            </a>
+            <a class="column" href="#">
+                <img src="./img/longmao.jpg" alt="">
+                <h4>分栏二</h4>
+            </a>
+            <a class="column" href="#">
+                <img src="./img/longmao.jpg" alt="">
+                <h4>分栏三</h4>
+            </a>
+        </div>
+        <div class="module">
+            <h3>模块一</h3>
+            <div class="module_wrap">
+                <div class="m_item">
+                    <img src="./img/longmao.jpg" alt="">
+                    <div class="m_article_item">
+                       <span>这是文案</span>
+                        <span>这是文案</span>
+                    </div>
+                    <div class="m_article_item">
+                       <span>这是文案</span>
+                        <span>这是文案</span>
+                    </div>
+                </div>
+                <div class="m_item">
+                    <img src="./img/longmao.jpg" alt="">
+                    <div class="m_article_item">
+                       <span>这是文案</span>
+                        <span>这是文案</span>
+                    </div>
+                    <div class="m_article_item">
+                       <span>这是文案</span>
+                        <span>这是文案</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="module">
+            <h3>模块二</h3>
+            <div class="module_wrap">
+                <div class="m_item">
+                    <img src="./img/longmao.jpg" alt="">
+                    <div class="m_article_item">
+                       <span>这是文案</span>
+                        <span>这是文案</span>
+                    </div>
+                    <div class="m_article_item">
+                       <span>这是文案</span>
+                        <span>这是文案</span>
+                    </div>
+                </div>
+                <div class="m_item">
+                    <img src="./img/longmao.jpg" alt="">
+                    <div class="m_article_item">
+                       <span>这是文案</span>
+                        <span>这是文案</span>
+                    </div>
+                    <div class="m_article_item">
+                       <span>这是文案</span>
+                        <span>这是文案</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="list_article">
+            <a href="">
+                <img src="./img/longmao.jpg" alt="">
+                <div class="article_info">
+                    <div class="article_title">外交部:反对朝方违背安理会决议进行发射活动</div>
+                    <div class="article_desc">47分钟前</div>
+                </div>
+            </a>
+        </section>
+
+        <section class="list_article">
+            <a href="">
+                <img src="./img/longmao.jpg" alt="">
+                <div class="article_info">
+                    <div class="article_title">外交部:反对朝方违背安理会决议进行发射活动</div>
+                    <div class="article_desc">47分钟前</div>
+                </div>
+            </a>
+        </section>
+
+        <section class="hot_article">
+            <h3>这是文章标题</h3>
+            <div class="img_list">
+                <img src="./img/longmao.jpg" alt="">
+                <img src="./img/longmao.jpg" alt="">
+                <img src="./img/longmao.jpg" alt="">
+            </div>
+            <span>7分钟前</span>
+        </section>
+    </div>
+
+    <footer>
+    </footer>
+
+    <script>
+        var nav = document.querySelectorAll(".nav-link");
+        for(var i=0; i<nav.length; i++){
+            nav[i].index = i;
+            nav[i].onclick = function(){
+                nav.forEach(function(item){
+                    item.style.borderBottom = "none" ;
+                });
+                nav[this.index].style.borderBottom = "3px solid #91D4DA";
+            }
+        }
+    </script>
+</body>
+</html>
